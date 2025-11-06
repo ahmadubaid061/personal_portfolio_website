@@ -732,6 +732,10 @@ nav {
   .services-grid {
     display: flex;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 30px;
+    display: flex;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 30px;
@@ -767,6 +771,10 @@ nav {
 
   .contact-form .btn-glow {
     align-self: center;
+  }
+  .projects-grid,
+  .services-grid {
+    touch-action: pan-y;
   }
 
   .projects-section {
