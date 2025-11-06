@@ -729,23 +729,26 @@ nav {
   .about-content h2 {
     font-size: 2.5rem;
   }
-  .services-grid {
-       display: flex; /* use flexbox instead of grid on mobile */
-    overflow-x: auto !important; /* enable horizontal scroll */
+   .services-grid {
+    display: flex;
+    overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory; /* optional, for nice snapping */
-    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
     gap: 30px;
-    padding-bottom: 20px; /* little space below */
+    padding: 10px 0;
     scroll-behavior: smooth;
-
-    -webkit-overflow-scrolling: touch; /* enables smooth finger scrolling */
-    touch-action: pan-x; /* allows horizontal swipe gestures */
+    touch-action: pan-x;
   }
 
   .service-card {
-    flex: 0 0 80%;
+    flex: 0 0 auto;
     scroll-snap-align: start;
+    min-width: 260px; /* same width as your project cards */
+  }
+
+  .services-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .services-dots {
@@ -850,5 +853,6 @@ nav {
     transform: scale(1.2);
   }
 }
+
 
 
