@@ -170,10 +170,11 @@ if (servicesContainer && serviceCards.length > 0) {
   servicesContainer.addEventListener("scroll", () => {
     const cardWidth = serviceCards[0].offsetWidth + 40;
     const index = Math.round(servicesContainer.scrollLeft / cardWidth);
-    servicesDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    servicesDots.forEach((dot, i) =>
+      dot.classList.toggle("active", i === index)
+    );
   });
 }
-
 
 // ===== Allow Vertical Scroll in Horizontal Sections =====
 function allowVerticalScroll(container) {
@@ -209,6 +210,3 @@ function allowVerticalScroll(container) {
 
 allowVerticalScroll(document.querySelector(".projects-container"));
 allowVerticalScroll(document.querySelector(".services-grid"));
-
-
-
