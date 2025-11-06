@@ -141,21 +141,28 @@ const serviceCards = document.querySelectorAll(".service-card");
 const servicesDotsContainer = document.querySelector(".services-dots");
 
 if (servicesContainer && serviceCards.length > 0) {
-  const servicesPerView = Math.floor(
-    servicesContainer.offsetWidth / serviceCards[0].offsetWidth
-  );
-  const totalServicesDots = Math.ceil(serviceCards.length / servicesPerView);
+  let isDragging = false;
+  let startX;
+  let scrollStart;
 
-  const servicesDots = document.querySelectorAll(".services-dots .dot");
+  servicesContainer.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - servicesContainer.offsetLeft;
+    scrollStart = servicesContainer.scrollLeft;
+  });
 
-  servicesContainer.addEventListener("scroll", () => {
-    const cardWidth = serviceCards[0].offsetWidth + 30;
-    const index = Math.round(servicesContainer.scrollLeft / cardWidth);
-    servicesDots.forEach((dot, i) =>
-      dot.classList.toggle("active", i === index)
-    );
+  servicesContainer.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - servicesContainer.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    servicesContainer.scrollLeft = scrollStart - walk;
+  });
+
+  servicesContainer.addEventListener("touchend", () => {
+    isDragging = false;
   });
 }
+
 
 // ===== Allow Vertical Scroll in Horizontal Sections =====
 function allowVerticalScroll(container) {
@@ -191,3 +198,4 @@ function allowVerticalScroll(container) {
 
 allowVerticalScroll(document.querySelector(".projects-container"));
 allowVerticalScroll(document.querySelector(".services-grid"));
+
