@@ -27,35 +27,6 @@ The aim is to create a clean, visually appealing, and user-friendly site that wo
 - CSS custom properties and animations  
 - No heavy frameworks so it stays lightweight and fast  
 
-## Getting Started  
-
-### Prerequisites  
-What you need to install / have:  
-- A modern browser (Chrome, Firefox, Safari)  
-- Node.js & npm (only needed if you plan to extend and build tooling)  
-- Git  
-
-### Installation  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/ahmadubaid061/personal_portfolio_website.git
-   ```  
-2. Navigate into project folder:  
-   ```bash
-   cd personal_portfolio_website
-   ```  
-3. Open `index.html` in your browser or set up a local server.
-
-### Running Locally  
-Simply open the `index.html` file in your browser, or if you prefer a live server (e.g., VSCode Live Server), run that for development.
-
-## Usage  
-Use this portfolio to:  
-- Showcase your development work  
-- Direct potential clients or employers to your services and projects  
-- Act as a central hub for your professional online presence  
-- Easily update content, services, and projects as you grow  
-
 ## Responsive & Mobile Behavior  
 On mobile devices:  
 - The Services and Projects sections change layout to horizontal scroll carousels  
