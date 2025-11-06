@@ -729,16 +729,14 @@ nav {
   .about-content h2 {
     font-size: 2.5rem;
   }
-  .services-grid {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .services-grid { display: flex; /* use flexbox instead of grid on mobile */
+    overflow-x: auto; /* enable horizontal scroll */
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory; /* optional, for nice snapping */
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
     gap: 30px;
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 30px;
+    padding-bottom: 20px; /* little space below */
+    scroll-behavior: smooth;
   }
 
   .service-card {
@@ -848,3 +846,4 @@ nav {
     transform: scale(1.2);
   }
 }
+
