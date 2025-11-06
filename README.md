@@ -37,4 +37,5 @@ On mobile devices:
 ## Contact  
 - GitHub: [@ahmadubaid061](https://github.com/ahmadubaid061)  
 - LinkedIn: [linkedin.com/in/ubaid-ahmad061](https://www.linkedin.com/in/ubaid-ahmad061/)  
-- Live Portfolio: [https://ahmadubaid.vercel.app/](https://https://ahmadubaid.vercel.app/)  
+- Live Portfolio: [https://ahmadubaid.vercel.app/](https://ahmadubaid.vercel.app/)
+
