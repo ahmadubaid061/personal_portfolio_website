@@ -202,11 +202,75 @@ projectsContainer.addEventListener("touchend", () => {
 });
 
 // ===== Services Section Scroll + Dots =====
+// const servicesContainer = document.querySelector(".services-grid");
+// const serviceCards = document.querySelectorAll(".service-card");
+// const servicesDotsContainer = document.querySelector(".services-dots");
+
+// if (servicesContainer && serviceCards.length > 0) {
+//   const servicesPerView = Math.floor(
+//     servicesContainer.offsetWidth / serviceCards[0].offsetWidth
+//   );
+//   const totalServicesDots = Math.ceil(serviceCards.length / servicesPerView);
+
+//   // servicesDotsContainer.innerHTML = "";
+//   // for (let i = 0; i < totalServicesDots; i++) {
+//   //   const dot = document.createElement("span");
+//   //   dot.classList.add("dot");
+//   //   if (i === 0) dot.classList.add("active");
+//   //   servicesDotsContainer.appendChild(dot);
+//   // }
+
+//   const servicesDots = document.querySelectorAll(".services-dots .dot");
+//   let currentServiceIndex = 0;
+
+//   function scrollToService(index) {
+//     const cardWidth = serviceCards[0].offsetWidth + 30; // 30 = gap
+//     servicesContainer.scrollTo({
+//       left: index * cardWidth,
+//       behavior: "smooth",
+//     });
+//     servicesDots.forEach((dot, i) =>
+//       dot.classList.toggle("active", i === index)
+//     );
+//   }
+
+//   // servicesDots.forEach((dot, index) => {
+//   //   dot.addEventListener("click", () => {
+//   //     currentServiceIndex = index;
+//   //     scrollToService(index);
+//   //   });
+//   // });
+
+//   // Touch scroll for mobile
+//   let startX = 0,
+//     scrollLeft = 0,
+//     isDown = false;
+
+//   servicesContainer.addEventListener("touchstart", (e) => {
+//     isDown = true;
+//     startX = e.touches[0].pageX - servicesContainer.offsetLeft;
+//     scrollLeft = servicesContainer.scrollLeft;
+//   });
+
+//   servicesContainer.addEventListener("touchmove", (e) => {
+//     if (!isDown) return;
+//     e.preventDefault();
+//     const x = e.touches[0].pageX - servicesContainer.offsetLeft;
+//     const walk = (x - startX) * 1.5;
+//     servicesContainer.scrollLeft = scrollLeft - walk;
+//   });
+
+//   servicesContainer.addEventListener("touchend", () => {
+//     isDown = false;
+//   });
+// }
+// ===== Services Section Scroll + Dots =====
 const servicesContainer = document.querySelector(".services-grid");
 const serviceCards = document.querySelectorAll(".service-card");
 const servicesDotsContainer = document.querySelector(".services-dots");
 
 if (servicesContainer && serviceCards.length > 0) {
+  // Create dots based on visible cards
   const servicesPerView = Math.floor(
     servicesContainer.offsetWidth / serviceCards[0].offsetWidth
   );
@@ -221,46 +285,45 @@ if (servicesContainer && serviceCards.length > 0) {
   // }
 
   const servicesDots = document.querySelectorAll(".services-dots .dot");
-  let currentServiceIndex = 0;
 
-  function scrollToService(index) {
-    const cardWidth = serviceCards[0].offsetWidth + 30; // 30 = gap
-    servicesContainer.scrollTo({
-      left: index * cardWidth,
-      behavior: "smooth",
-    });
-    servicesDots.forEach((dot, i) =>
-      dot.classList.toggle("active", i === index)
-    );
-  }
-
+  // Handle clicking dots to scroll
   // servicesDots.forEach((dot, index) => {
   //   dot.addEventListener("click", () => {
-  //     currentServiceIndex = index;
-  //     scrollToService(index);
+  //     const cardWidth = serviceCards[0].offsetWidth + 30; // 30 = gap
+  //     servicesContainer.scrollTo({
+  //       left: index * cardWidth,
+  //       behavior: "smooth",
+  //     });
   //   });
   // });
 
-  // Touch scroll for mobile
-  let startX = 0,
-    scrollLeft = 0,
-    isDown = false;
-
-  servicesContainer.addEventListener("touchstart", (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - servicesContainer.offsetLeft;
-    scrollLeft = servicesContainer.scrollLeft;
-  });
-
-  servicesContainer.addEventListener("touchmove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.touches[0].pageX - servicesContainer.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    servicesContainer.scrollLeft = scrollLeft - walk;
-  });
-
-  servicesContainer.addEventListener("touchend", () => {
-    isDown = false;
+  // Update active dot based on scroll position
+  servicesContainer.addEventListener("scroll", () => {
+    const cardWidth = serviceCards[0].offsetWidth + 30;
+    const index = Math.round(servicesContainer.scrollLeft / cardWidth);
+    servicesDots.forEach((dot, i) =>
+      dot.classList.toggle("active", i === index)
+    );
   });
 }
+
+//to allow vertical scrolling in the services and project sections
+function allowVerticalScroll(container) {
+  let startX, startY;
+  container.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  });
+  container.addEventListener("touchmove", (e) => {
+    const dx = Math.abs(e.touches[0].clientX - startX);
+    const dy = Math.abs(e.touches[0].clientY - startY);
+    if (dy > dx) {
+      // vertical swipe → let page scroll
+      e.stopPropagation();
+    }
+  });
+}
+
+// Apply to both grids
+allowVerticalScroll(document.querySelector(".projects-grid"));
+allowVerticalScroll(document.querySelector(".services-grid"));
