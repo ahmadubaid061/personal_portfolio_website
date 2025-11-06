@@ -144,25 +144,46 @@ if (servicesContainer && serviceCards.length > 0) {
   let isDragging = false;
   let startX;
   let scrollStart;
+  let velocity = 0;
+  let lastTouchX;
+  let lastMoveTime;
+  let momentumID;
+
+  const applyMomentum = () => {
+    if (Math.abs(velocity) < 0.1) return;
+    servicesContainer.scrollLeft -= velocity;
+    velocity *= 0.95; // friction
+    momentumID = requestAnimationFrame(applyMomentum);
+  };
 
   servicesContainer.addEventListener("touchstart", (e) => {
     isDragging = true;
-    startX = e.touches[0].pageX - servicesContainer.offsetLeft;
+    cancelAnimationFrame(momentumID);
+    startX = e.touches[0].pageX;
     scrollStart = servicesContainer.scrollLeft;
+    lastTouchX = startX;
+    lastMoveTime = Date.now();
   });
 
   servicesContainer.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
-    const x = e.touches[0].pageX - servicesContainer.offsetLeft;
-    const walk = (x - startX) * 1.2;
-    servicesContainer.scrollLeft = scrollStart - walk;
+    const x = e.touches[0].pageX;
+    const dx = x - lastTouchX;
+    const now = Date.now();
+    const dt = now - lastMoveTime;
+
+    velocity = dx / dt * 20; // pixels per frame approx.
+    servicesContainer.scrollLeft = scrollStart - (x - startX);
+
+    lastTouchX = x;
+    lastMoveTime = now;
   });
 
   servicesContainer.addEventListener("touchend", () => {
     isDragging = false;
+    applyMomentum(); // continue the movement
   });
 }
-
 
 // ===== Allow Vertical Scroll in Horizontal Sections =====
 function allowVerticalScroll(container) {
@@ -198,4 +219,5 @@ function allowVerticalScroll(container) {
 
 allowVerticalScroll(document.querySelector(".projects-container"));
 allowVerticalScroll(document.querySelector(".services-grid"));
+
 
