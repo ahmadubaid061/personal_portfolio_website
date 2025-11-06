@@ -742,7 +742,7 @@ nav {
   }
 
   .service-card {
-    flex: 0 0 auto;
+    flex: 0 0 80%;
     scroll-snap-align: start;
     min-width: 260px; /* same width as your project cards */
   }
@@ -853,6 +853,7 @@ nav {
     transform: scale(1.2);
   }
 }
+
 
 
 
