@@ -136,54 +136,44 @@ if (projectsContainer && projectCards.length > 0) {
 }
 
 // ===== Services Section Scroll + Dots =====
+// ===== Services Section Scroll (same as projects) =====
 const servicesContainer = document.querySelector(".services-grid");
 const serviceCards = document.querySelectorAll(".service-card");
 const servicesDotsContainer = document.querySelector(".services-dots");
 
 if (servicesContainer && serviceCards.length > 0) {
-  let isDragging = false;
-  let startX;
-  let scrollStart;
-  let velocity = 0;
-  let lastTouchX;
-  let lastMoveTime;
-  let momentumID;
+  const servicesPerView = Math.floor(
+    servicesContainer.offsetWidth / serviceCards[0].offsetWidth
+  );
+  const totalServicesDots = Math.ceil(serviceCards.length / servicesPerView);
 
-  const applyMomentum = () => {
-    if (Math.abs(velocity) < 0.1) return;
-    servicesContainer.scrollLeft -= velocity;
-    velocity *= 0.95; // friction
-    momentumID = requestAnimationFrame(applyMomentum);
-  };
+  servicesDotsContainer.innerHTML = "";
+  for (let i = 0; i < totalServicesDots; i++) {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    servicesDotsContainer.appendChild(dot);
+  }
 
-  servicesContainer.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    cancelAnimationFrame(momentumID);
-    startX = e.touches[0].pageX;
-    scrollStart = servicesContainer.scrollLeft;
-    lastTouchX = startX;
-    lastMoveTime = Date.now();
+  const servicesDots = document.querySelectorAll(".services-dots .dot");
+
+  servicesDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      const cardWidth = serviceCards[0].offsetWidth + 40;
+      servicesContainer.scrollTo({
+        left: index * cardWidth,
+        behavior: "smooth",
+      });
+    });
   });
 
-  servicesContainer.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX;
-    const dx = x - lastTouchX;
-    const now = Date.now();
-    const dt = now - lastMoveTime;
-
-    velocity = dx / dt * 20; // pixels per frame approx.
-    servicesContainer.scrollLeft = scrollStart - (x - startX);
-
-    lastTouchX = x;
-    lastMoveTime = now;
-  });
-
-  servicesContainer.addEventListener("touchend", () => {
-    isDragging = false;
-    applyMomentum(); // continue the movement
+  servicesContainer.addEventListener("scroll", () => {
+    const cardWidth = serviceCards[0].offsetWidth + 40;
+    const index = Math.round(servicesContainer.scrollLeft / cardWidth);
+    servicesDots.forEach((dot, i) => dot.classList.toggle("active", i === index));
   });
 }
+
 
 // ===== Allow Vertical Scroll in Horizontal Sections =====
 function allowVerticalScroll(container) {
@@ -219,5 +209,6 @@ function allowVerticalScroll(container) {
 
 allowVerticalScroll(document.querySelector(".projects-container"));
 allowVerticalScroll(document.querySelector(".services-grid"));
+
 
 
