@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-[View Live Site](https://ahmadubaid.netlify.app/) • [GitHub Repository](https://github.com/ahmadubaid061/personal_portfolio_website)
+[View Live Site](https://ahmadubaid.vercel.app/) • [GitHub Repository](https://github.com/ahmadubaid061/personal_portfolio_website)
 
 ## About the Project  
 This is a modern, responsive personal portfolio website built by Ubaid Ahmad, a front-end web developer.  
@@ -37,4 +37,4 @@ On mobile devices:
 ## Contact  
 - GitHub: [@ahmadubaid061](https://github.com/ahmadubaid061)  
 - LinkedIn: [linkedin.com/in/ubaid-ahmad061](https://www.linkedin.com/in/ubaid-ahmad061/)  
-- Live Portfolio: [ahmadubaid.netlify.app](https://ahmadubaid.netlify.app/)  
+- Live Portfolio: [https://ahmadubaid.vercel.app/](https://https://ahmadubaid.vercel.app/)  
