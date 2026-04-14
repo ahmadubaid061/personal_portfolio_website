@@ -101,7 +101,7 @@ const dotsContainer = document.querySelector(".dots");
 if (projectsContainer && projectCards.length > 0) {
   // Calculate number of dots based on cards per view
   const projectsPerView = Math.floor(
-    projectsContainer.offsetWidth / projectCards[0].offsetWidth
+    projectsContainer.offsetWidth / projectCards[0].offsetWidth,
   );
   const totalDots = Math.ceil(projectCards.length / projectsPerView);
 
@@ -143,7 +143,7 @@ const servicesDotsContainer = document.querySelector(".services-dots");
 
 if (servicesContainer && serviceCards.length > 0) {
   const servicesPerView = Math.floor(
-    servicesContainer.offsetWidth / serviceCards[0].offsetWidth
+    servicesContainer.offsetWidth / serviceCards[0].offsetWidth,
   );
   const totalServicesDots = Math.ceil(serviceCards.length / servicesPerView);
 
@@ -171,7 +171,7 @@ if (servicesContainer && serviceCards.length > 0) {
     const cardWidth = serviceCards[0].offsetWidth + 40;
     const index = Math.round(servicesContainer.scrollLeft / cardWidth);
     servicesDots.forEach((dot, i) =>
-      dot.classList.toggle("active", i === index)
+      dot.classList.toggle("active", i === index),
     );
   });
 }
@@ -187,7 +187,7 @@ function allowVerticalScroll(container) {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
     },
-    { passive: true }
+    { passive: true },
   );
 
   container.addEventListener(
@@ -204,9 +204,14 @@ function allowVerticalScroll(container) {
         container.parentElement.scrollTop += dy;
       }
     },
-    { passive: true }
+    { passive: true },
   );
 }
 
 allowVerticalScroll(document.querySelector(".projects-container"));
 allowVerticalScroll(document.querySelector(".services-grid"));
+// show alert on clicking an unclickible github link in project section
+function showAlert(event) {
+  event.preventDefault();
+  alert("cannot show the code due to privacy concerns");
+}
