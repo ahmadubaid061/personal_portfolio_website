@@ -1,217 +1,208 @@
 "use strict";
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-const menu_open = document.querySelector(".menu-btn");
-const menu_close = document.querySelector(".close-menu");
-const sidebar = document.querySelector(".sidebar");
+document.addEventListener("keydown", (e) => {
+  if (e.key === "F12") e.preventDefault();
+});
+// Initialize AOS
+AOS.init({ once: false, offset: 80, duration: 800, easing: "ease-out" });
 
-//--------------------------- Smooth Scroll (desktop + mobile)
-document.querySelectorAll(".nav-links").forEach((navLinks) => {
-  navLinks.addEventListener("click", function (e) {
-    if (e.target.classList.contains("link")) {
+// ===== MOBILE MENU TOGGLE (Fixed) =====
+const menuOpen = document.getElementById("menuOpen");
+const menuClose = document.getElementById("menuClose");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.querySelector(".sidebar-overlay");
+
+function openMenu() {
+  sidebar.classList.add("open");
+  if (overlay) overlay.classList.add("active");
+  document.body.classList.add("menu-open");
+}
+
+function closeMenu() {
+  sidebar.classList.remove("open");
+  if (overlay) overlay.classList.remove("active");
+  document.body.classList.remove("menu-open");
+}
+
+if (menuOpen && menuClose && sidebar) {
+  menuOpen.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+
+  // Close when clicking overlay
+  if (overlay) {
+    overlay.addEventListener("click", closeMenu);
+  }
+
+  // Close when clicking sidebar links
+  document.querySelectorAll(".sidebar a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+}
+
+// ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href");
+    if (targetId === "#") return;
+
+    const target = document.querySelector(targetId);
+    if (target) {
       e.preventDefault();
-      const targetID = e.target.getAttribute("href");
-      const targetSection = document.querySelector(targetID);
-
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: "smooth" });
-      }
-
-      // close sidebar (mobile)
-      sidebar.classList.remove("open");
+      target.scrollIntoView({ behavior: "smooth" });
     }
   });
 });
 
-//---------------------------Quick Contact button smooth scroll to contact section
-document
-  .querySelector("#initiate_contact")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    const targetID = e.target.getAttribute("href");
-    const targetSection = document.querySelector(targetID);
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-
-//--------------------------------------------------fading navigation links
-const navContainer = document.querySelector(".nav-links");
-
-const handleHover = function (e) {
-  if (e.target.classList.contains("link")) {
-    const hovered = e.target;
-
-    const siblings = hovered.closest(".nav-links").querySelectorAll(".link");
-
-    siblings.forEach((item) => {
-      if (item !== hovered) item.style.opacity = this;
-    });
-  }
-};
-//--------------mouse enters
-navContainer.addEventListener("mouseover", handleHover.bind(0.5));
-//-----------------mouse leaves
-navContainer.addEventListener("mouseout", handleHover.bind(1));
-
-//------------------------------------------------------------ Back to Top on "Home"
-document.querySelectorAll('a[href="#home"]').forEach((homeLink) => {
-  homeLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    sidebar.classList.remove("open");
-  });
-});
-
-//--------------------------- Sticky Navigation
-const desktopNav = document.querySelector(".desktop-header");
-const mobileNav = document.querySelector(".mobile-header");
-const heroSection = document.querySelector(".hero");
-
-const headerCallback = (entries) => {
-  const [entry] = entries;
-  desktopNav.classList.toggle("sticky", !entry.isIntersecting);
-  mobileNav.classList.toggle("sticky", !entry.isIntersecting);
-};
-
-const headerObserver = new IntersectionObserver(headerCallback, {
-  root: null,
-  threshold: 0.5,
-});
-headerObserver.observe(heroSection);
-
-//--------------------------- Sidebar Toggle
-menu_open.addEventListener("click", () => sidebar.classList.add("open"));
-menu_close.addEventListener("click", () => sidebar.classList.remove("open"));
-
-document.addEventListener("click", (e) => {
-  if (
-    sidebar.classList.contains("open") &&
-    !sidebar.contains(e.target) &&
-    !menu_open.contains(e.target)
-  ) {
-    sidebar.classList.remove("open");
+// ===== STICKY NAVBAR =====
+const nav = document.querySelector("nav");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    nav.style.background = "rgba(8, 8, 14, 0.95)";
+  } else {
+    nav.style.background = "rgba(10, 10, 15, 0.75)";
   }
 });
 
-// ===== Projects Section Scroll (Fluid + Natural) =====
-const projectsContainer = document.querySelector(".projects-container");
-const projectCards = document.querySelectorAll(".project-card");
-const dotsContainer = document.querySelector(".dots");
+// ===== PROJECTS HORIZONTAL SCROLL + DOTS (Mobile) =====
+const projectsGrid = document.getElementById("projectsGrid");
+const projectsDots = document.getElementById("projectsDots");
 
-if (projectsContainer && projectCards.length > 0) {
-  // Calculate number of dots based on cards per view
-  const projectsPerView = Math.floor(
-    projectsContainer.offsetWidth / projectCards[0].offsetWidth,
-  );
-  const totalDots = Math.ceil(projectCards.length / projectsPerView);
+function updateProjectDots() {
+  if (!projectsGrid || !projectsDots) return;
 
-  // Create dots
-  dotsContainer.innerHTML = "";
-  for (let i = 0; i < totalDots; i++) {
-    const dot = document.createElement("span");
+  const cards = document.querySelectorAll(".project-card");
+  if (cards.length === 0) return;
+
+  projectsDots.innerHTML = "";
+
+  for (let i = 0; i < cards.length; i++) {
+    const dot = document.createElement("div");
     dot.classList.add("dot");
-    if (i === 0) dot.classList.add("active");
-    dotsContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll(".dot");
-
-  // Handle clicking dots
-  dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      const cardWidth = projectCards[0].offsetWidth + 40; // 40 = gap
-      projectsContainer.scrollTo({
-        left: index * cardWidth,
+      projectsGrid.scrollTo({
+        left: cards[i].offsetLeft - 20,
         behavior: "smooth",
       });
     });
-  });
-
-  // Update active dot based on scroll
-  projectsContainer.addEventListener("scroll", () => {
-    const cardWidth = projectCards[0].offsetWidth + 40;
-    const index = Math.round(projectsContainer.scrollLeft / cardWidth);
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-  });
-}
-
-// ===== Services Section Scroll + Dots =====
-// ===== Services Section Scroll (same as projects) =====
-const servicesContainer = document.querySelector(".services-grid");
-const serviceCards = document.querySelectorAll(".service-card");
-const servicesDotsContainer = document.querySelector(".services-dots");
-
-if (servicesContainer && serviceCards.length > 0) {
-  const servicesPerView = Math.floor(
-    servicesContainer.offsetWidth / serviceCards[0].offsetWidth,
-  );
-  const totalServicesDots = Math.ceil(serviceCards.length / servicesPerView);
-
-  servicesDotsContainer.innerHTML = "";
-  for (let i = 0; i < totalServicesDots; i++) {
-    const dot = document.createElement("span");
-    dot.classList.add("dot");
-    if (i === 0) dot.classList.add("active");
-    servicesDotsContainer.appendChild(dot);
+    projectsDots.appendChild(dot);
   }
 
-  const servicesDots = document.querySelectorAll(".services-dots .dot");
+  const dotsArr = document.querySelectorAll("#projectsDots .dot");
 
-  servicesDots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      const cardWidth = serviceCards[0].offsetWidth + 40;
-      servicesContainer.scrollTo({
-        left: index * cardWidth,
-        behavior: "smooth",
-      });
-    });
-  });
-
-  servicesContainer.addEventListener("scroll", () => {
-    const cardWidth = serviceCards[0].offsetWidth + 40;
-    const index = Math.round(servicesContainer.scrollLeft / cardWidth);
-    servicesDots.forEach((dot, i) =>
-      dot.classList.toggle("active", i === index),
-    );
-  });
-}
-
-// ===== Allow Vertical Scroll in Horizontal Sections =====
-function allowVerticalScroll(container) {
-  if (!container) return;
-  let startX, startY;
-
-  container.addEventListener(
-    "touchstart",
-    (e) => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    },
-    { passive: true },
-  );
-
-  container.addEventListener(
-    "touchmove",
-    (e) => {
-      const dx = Math.abs(e.touches[0].clientX - startX);
-      const dy = Math.abs(e.touches[0].clientY - startY);
-
-      if (dx > dy) {
-        // horizontal swipe
-        e.stopPropagation();
-      } else {
-        // allow vertical page scroll
-        container.parentElement.scrollTop += dy;
+  const updateActiveDot = () => {
+    const scrollPos = projectsGrid.scrollLeft;
+    let activeIndex = 0;
+    for (let i = 0; i < cards.length; i++) {
+      const cardLeft = cards[i].offsetLeft - 20;
+      if (scrollPos >= cardLeft - 50) {
+        activeIndex = i;
       }
-    },
-    { passive: true },
-  );
+    }
+    dotsArr.forEach((dot, i) => {
+      dot.classList.toggle("active", i === activeIndex);
+    });
+  };
+
+  projectsGrid.addEventListener("scroll", updateActiveDot);
+  updateActiveDot();
+
+  if (dotsArr[0]) dotsArr[0].classList.add("active");
 }
 
-allowVerticalScroll(document.querySelector(".projects-container"));
-allowVerticalScroll(document.querySelector(".services-grid"));
-// show alert on clicking an unclickible github link in project section
+// ===== SERVICES HORIZONTAL SCROLL + DOTS (Mobile) =====
+const servicesGrid = document.getElementById("servicesGrid");
+const servicesDots = document.getElementById("servicesDots");
+
+function updateServicesDots() {
+  if (!servicesGrid || !servicesDots) return;
+
+  const cards = document.querySelectorAll(".service-card");
+  if (cards.length === 0) return;
+
+  servicesDots.innerHTML = "";
+
+  for (let i = 0; i < cards.length; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dot.addEventListener("click", () => {
+      servicesGrid.scrollTo({
+        left: cards[i].offsetLeft - 20,
+        behavior: "smooth",
+      });
+    });
+    servicesDots.appendChild(dot);
+  }
+
+  const dotsArr = document.querySelectorAll("#servicesDots .dot");
+
+  const updateActiveDot = () => {
+    const scrollPos = servicesGrid.scrollLeft;
+    let activeIndex = 0;
+    for (let i = 0; i < cards.length; i++) {
+      const cardLeft = cards[i].offsetLeft - 20;
+      if (scrollPos >= cardLeft - 50) {
+        activeIndex = i;
+      }
+    }
+    dotsArr.forEach((dot, i) => {
+      dot.classList.toggle("active", i === activeIndex);
+    });
+  };
+
+  servicesGrid.addEventListener("scroll", updateActiveDot);
+  updateActiveDot();
+
+  if (dotsArr[0]) dotsArr[0].classList.add("active");
+}
+
+// Initialize mobile features only on small screens
+function initMobileFeatures() {
+  if (window.innerWidth <= 900) {
+    updateProjectDots();
+    updateServicesDots();
+  }
+}
+
+// Run on load and resize
+initMobileFeatures();
+window.addEventListener("resize", initMobileFeatures);
+
+// ===== SHOW ALERT FOR PRIVATE GITHUB REPOS =====
 function showAlert(event) {
   event.preventDefault();
-  alert("cannot show the code due to privacy concerns");
+  alert("Privacy concerns — Code not publicly available.");
+}
+window.showAlert = showAlert;
+
+// ===== CONTACT FORM HANDLER =====
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("✨ Thank you! I'll reach out soon.");
+    contactForm.reset();
+  });
+}
+
+// ===== FADE-IN EFFECT FOR NAV LINKS (Optional Elegance) =====
+const navLinks = document.querySelector(".nav-links");
+if (navLinks) {
+  navLinks.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("nav-links") || e.target.tagName === "NAV")
+      return;
+    const siblings = navLinks.querySelectorAll("a");
+    siblings.forEach((sibling) => {
+      if (sibling !== e.target && !sibling.classList.contains("contact-nav")) {
+        sibling.style.opacity = "0.5";
+      }
+    });
+  });
+
+  navLinks.addEventListener("mouseout", () => {
+    const siblings = navLinks.querySelectorAll("a");
+    siblings.forEach((sibling) => {
+      sibling.style.opacity = "1";
+    });
+  });
 }
