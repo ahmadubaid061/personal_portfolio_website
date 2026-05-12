@@ -1,449 +1,751 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ubaid Ahmad | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ubaid Ahmad | Visionary Front-End Architect</title>
+    <!-- Google Fonts: Enhanced Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Font Awesome for social icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
+        body {
+            background-color: #0A0A0F;
+            color: #F0F0F0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-  <body class="grid-bg">
-    <!-- ===== Navbar ===== -->
-    <nav class="desktop-header header">
-      <div class="logo">DEV-UBAID</div>
-      <div class="nav-links">
-        <a href="#home" class="link">HOME</a>
-        <a href="#about" class="link">ABOUT</a>
-        <a href="#services" class="link">SERVICES</a>
-        <a href="#projects" class="link">PROJECTS</a>
-        <a href="#experience" class="link">EXPERIENCE</a>
-        <a href="#contact" class="link" id="contact-btn">CONTACT</a>
-      </div>
-    </nav>
-    <!-- for small screen-->
-    <nav class="mobile-header header">
-      <div class="logo">DEV-UBAID</div>
-      <div class="navbar">
-        <img class="menu-btn" src="menu.svg" alt="" />
-      </div>
-    </nav>
-    <!-- ===== Hero Section ===== -->
-    <section class="hero" id="home">
-      <div class="hero-left">
-        <!-- <div class="status">&gt; Status: Online</div> -->
-        <h1>UBAID <span>AHMAD</span></h1>
-        <h3>FRONT-END WEB DEVELOPER</h3>
-        <p>Building clean ,responsive and user friendly websites.</p>
-        <a href="#contact" class="btn-glow" id="initiate_contact"
-          >&gt; Initiate Contact_</a
-        >
+        /* Custom Cursor & Neon Vibe */
+        ::selection {
+            background: #00ff99;
+            color: #0A0A0F;
+        }
 
-        <div class="social-icons">
-          <a href="https://github.com/ahmadubaid061"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a href="https://www.linkedin.com/in/ubaid-ahmad061/"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="https://x.com/ahmadubaid061"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="https://www.instagram.com/ahmadubaid061/"
-            ><i class="fab fa-instagram"></i
-          ></a>
+        /* Smooth Scroll + Section Padding */
+        section {
+            padding: 120px 8%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Animated Gradient Border & Glow */
+        :root {
+            --neon-primary: #00ff99;
+            --neon-glow: 0 0 10px rgba(0,255,153,0.5), 0 0 20px rgba(0,255,153,0.3);
+            --bg-card: rgba(18, 18, 24, 0.7);
+            --border-card: rgba(0, 255, 153, 0.2);
+        }
+
+        /* ===== NAVBAR (Modern Glassmorphism) ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 15, 0.75);
+            border-bottom: 1px solid rgba(0, 255, 153, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF 0%, #00ff99 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #E0E0E0;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #00ff99;
+            transition: 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00ff99;
+        }
+
+        .contact-nav {
+            border: 1.5px solid #00ff99;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            background: rgba(0, 255, 153, 0.05);
+        }
+
+        .contact-nav:hover {
+            background: #00ff99;
+            color: #0A0A0F !important;
+            box-shadow: 0 0 15px #00ff99;
+        }
+
+        .menu-btn, .close-menu {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #00ff99;
+        }
+
+        /* Mobile Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(8, 8, 12, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+            border-left: 1px solid #00ff99;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .close-menu {
+            align-self: flex-end;
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+        }
+
+        /* HERO SECTION - Artistic & Bold */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: radial-gradient(circle at 80% 30%, rgba(0,255,153,0.08) 0%, #0A0A0F 70%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 4.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(120deg, #00ff99, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-tag {
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            color: #aaa;
+            border-left: 3px solid #00ff99;
+            padding-left: 1rem;
+        }
+
+        .hero-desc {
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 90%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #00ff99;
+            color: #0A0A0F;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 8px #00ff99;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px #00ff99;
+        }
+
+        .btn-outline {
+            border: 1.5px solid #00ff99;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            color: #00ff99;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0,255,153,0.1);
+            transform: translateY(-3px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            background: rgba(255,255,255,0.05);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff99;
+            font-size: 1.3rem;
+            transition: 0.3s;
+            border: 1px solid rgba(0,255,153,0.3);
+        }
+
+        .social-links a:hover {
+            background: #00ff99;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-frame {
+            width: 320px;
+            height: 320px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(135deg, #00ff99, #00ccff);
+            padding: 6px;
+            animation: morphing 8s infinite ease-in-out;
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            filter: grayscale(15%);
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 58% 42% 75% 25% / 42% 55% 45% 58%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            display: inline-block;
+            position: relative;
+            font-family: 'Space Grotesk', monospace;
+        }
+        .section-header span {
+            color: #00ff99;
+        }
+
+        /* About Card */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-card);
+        }
+        .edu-item {
+            margin-bottom: 2rem;
+            border-left: 2px solid #00ff99;
+            padding-left: 1.2rem;
+            transition: 0.2s;
+        }
+
+        /* Services & Projects Grid (Modern Card) */
+        .services-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .service-card, .project-card {
+            background: rgba(20, 20, 28, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0,255,153,0.2);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .service-card:hover, .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff99;
+            box-shadow: 0 20px 30px -15px rgba(0,255,153,0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #00ff99;
+            margin-bottom: 1rem;
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #00ff99;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0,255,153,0.1);
+            border-radius: 30px;
+            color: #00ff99;
+            transition: 0.2s;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-item {
+            background: rgba(255,255,255,0.02);
+            padding: 1.8rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #00ff99;
+            transition: 0.3s;
+        }
+
+        /* Contact Section Modern */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: rgba(15,15,22,0.6);
+            border-radius: 2rem;
+            padding: 2rem;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0,255,153,0.2);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 1rem;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #00ff99;
+            outline: none;
+            box-shadow: 0 0 8px #00ff99;
+        }
+
+        /* Dots for mobile scroll (hidden by default) */
+        .dots-mobile, .services-dots {
+            display: none;
+        }
+
+        /* Responsive Horizontal Scroll on Mobile (projects) */
+        @media (max-width: 900px) {
+            section { padding: 80px 5%; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-left h1 { font-size: 3rem; }
+            .hero-desc { max-width: 100%; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .menu-btn { display: block; }
+            .mobile-header { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+            .desktop-nav { display: none; }
+            .projects-grid, .services-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1.5rem;
+                padding-bottom: 2rem;
+            }
+            .project-card, .service-card {
+                flex: 0 0 85%;
+                scroll-snap-align: start;
+            }
+            .dots-mobile, .services-dots {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+                background: #555;
+                border-radius: 50%;
+                transition: 0.2s;
+                cursor: pointer;
+            }
+            .dot.active {
+                background: #00ff99;
+                transform: scale(1.4);
+            }
+            .avatar-frame { width: 240px; height: 240px; margin-top: 2rem; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0,255,153,0.2);
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* floating animations */
+        [data-aos] {
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">✦ DEV-UBAID</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact" class="contact-nav">Contact</a>
         </div>
-      </div>
-
-      <div class="hero-right">
-        <img src="unnamed.jpg" alt="Ubaid Ahmad" />
-      </div>
-    </section>
-    <!-- ===== About Section ===== -->
-
-    <section class="about-section" id="about">
-      <h2 class="section-title">&gt; ABOUT_ME</h2>
-
-      <div class="about-content">
-        <p>
-          I’m a web designer and front-end developer specializing in creating
-          responsive, visually appealing, and user-friendly websites. With
-          strong skills in HTML, CSS, and JavaScript, I focus on building clean
-          interfaces and seamless user experiences. I stay up to date with
-          modern design trends and enjoy contributing to projects that combine
-          creativity with functionality.
-        </p>
-
-        <div class="education">
-          <h3 class="edu-title">EDUCATION_</h3>
-
-          <div class="edu-item">
-            <h4>BS Computer Science</h4>
-            <p class="institute">SS Case It Islamabad</p>
-            <p class="edu-desc">
-              Focused on programming fundamentals, data structures, and modern
-              web technologies. Actively engaged in software development and
-              problem-solving projects.
-            </p>
-            <span class="duration">2024 — 2028</span>
-          </div>
-
-          <div class="edu-item">
-            <h4>Web Development</h4>
-            <p class="institute">NAVTTC Pakistan</p>
-            <p class="edu-desc">
-              Learned responsive design, UI/UX principles, and front-end
-              frameworks. Developed multiple mini-projects using HTML, CSS, and
-              JavaScript.
-            </p>
-            <span class="duration">02/2025 — 07/2025</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ===== Services Section ===== -->
-    <section class="services-section" id="services">
-      <h2 class="section-title">&gt; SERVICES</h2>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Portfolio Website</h3>
-          <p>
-            Showcase your skills or brand with a modern, personalized portfolio
-            website. Perfect for professionals and creatives.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-
-        <div class="service-card">
-          <h3>Landing Page Design</h3>
-          <p>
-            High-converting landing pages built to attract customers and
-            increase sales or sign-ups.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-
-        <div class="service-card">
-          <h3>E-Commerce Website</h3>
-          <p>
-            Beautiful, responsive online stores with smooth navigation, product
-            pages, and checkout experience.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-
-        <div class="service-card">
-          <h3>Business Website</h3>
-          <p>
-            Professional websites tailored for businesses to boost online
-            presence and credibility.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-
-        <div class="service-card">
-          <h3>Blog Website</h3>
-          <p>
-            Clean, responsive blogs designed for writers, influencers, and
-            content creators.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-
-        <div class="service-card">
-          <h3>Website Redesign</h3>
-          <p>
-            Give your old website a fresh, modern, and user-friendly look that
-            matches today’s trends.
-          </p>
-          <a href="#contact" class="service-btn">order service</a>
-        </div>
-      </div>
-      <div class="services-dots"></div>
-    </section>
-    <!-- ===== Projects Section ===== -->
-
-    <section class="projects-section" id="projects">
-      <h2 class="section-title">&gt; PROJECTS_</h2>
-
-      <div class="projects-container">
-        <div class="project-card">
-          <img src="sgc.png" alt="website image" />
-          <h3>A Business Website</h3>
-          <p>
-            Developed a business website for a visa consultancy Company.
-            Creating responsive layouts and service-focused pages Integrating
-            user-friendly elements.
-          </p>
-          <div class="project-links">
-            <a
-              href="https://consultantsbysgc.com/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="#"
-              class="btn-glow"
-              target="_blank"
-              style="cursor: not-allowed"
-              onclick="showAlert(event)"
-              >GitHub</a
-            >
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="bankist.jpg" alt="bank picture" />
-          <h3>Bankist Landing page</h3>
-          <p>
-            A clean Bankist website,(not yet responsive ) just for practicing
-            DOM events and functionalities
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/Bank_website/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/Bank_website"
-              class="btn-glow"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="bank.jpg" alt="a person sitting in front of laptop" />
-          <h3>Bankist App</h3>
-          <p>
-            A online banking Website,with transaction,loan and other
-            functionalities. Desktop screens only.
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/Bankist-App_Project/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/Bankist-App_Project"
-              class="btn-glow"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="dice.jpg" alt="dice image" />
-          <h3>Rolling Dice Game</h3>
-          <p>
-            Two-player dice game implemented using JavaScript.A clean,
-            interactive UI including animations for an engaging experience.
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/Dice-Game/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/Dice-Game"
-              class="btn-glow"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-        </div>
-
-        <!-- <div class="project-card">
-          <img src="racket.jpg" alt="racket and tennis ball" />
-          <h3>E-commerce Website</h3>
-          <p>
-            A fully responsive online sports store .Implemented using Html and
-            Css providing clean and interactive user interface
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/E-commerse/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/E-commerse"
-              class="btn-glow"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-        </div> -->
-
-        <!-- <div class="project-card">
-          <img src="gallery.jpg" alt="To-Do App" />
-          <h3>Gallery Website</h3>
-          <p>
-            A fully resposnsive gallery app implemented using Html and Css with
-            image searches by categories functionality
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/my-gallery/"
-              class="btn-glow"
-              target="_blank"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/my-gallery/tree/mygallery"
-              class="btn-glow"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-        </div> -->
-
-        <div class="project-card">
-          <img src="portfolio.jpeg" alt="portfolio image" />
-          <h3>Portfolio Template</h3>
-          <p>
-            Clean, modern fully responsive portfolio design implemented using
-            HTML,CSS and Javascript for creative professionals.
-          </p>
-          <div class="project-links">
-            <a
-              href="https://ahmadubaid061.github.io/my_portfolio/"
-              class="btn-glow"
-              >Live Demo</a
-            >
-            <a
-              href="https://github.com/ahmadubaid061/my_portfolio"
-              class="btn-glow"
-              >GitHub</a
-            >
-          </div>
-        </div>
-        <div class="dots"></div>
-      </div>
-    </section>
-
-    <!-- ===== Experience Section ===== -->
-    <section class="experience-section" id="experience">
-      <h2 class="section-title">EXPERIENCE_</h2>
-
-      <div class="experience-content">
-        <div class="experience-item">
-          <h3>Javascript Intern - Saif Softy Tech</h3>
-          <span class="duration">07/2025 — Present</span>
-          <p>
-            As a JavaScript Intern at Saif Softy Tech, I work on daily coding
-            tasks and real-world projects to strengthen my front-end development
-            skills. I regularly share my work on GitHub, gaining experience in
-            version control and project documentation while collaborating with
-            the team to improve code quality and problem-solving approaches.
-          </p>
-        </div>
-
-        <div class="experience-item">
-          <h3>Front Web Developer – Linkedin</h3>
-          <span class="duration">2024 — present</span>
-          <p>
-            Regularly share projects, insights, and resources related to web
-            development. Engage with the tech community by discussing industry
-            trends, exchanging knowledge, and showcasing my work to build a
-            professional network and personal brand.
-          </p>
-        </div>
-
-        <div class="experience-item">
-          <h3>Web Developer – GitHub contributer</h3>
-          <span class="duration">2024 — present</span>
-          <p>
-            I actively use GitHub as a platform to share my front-end
-            development projects and code. By maintaining repositories for
-            personal and internship projects, I focus on clean code, proper
-            documentation, and version control while continuously improving my
-            web development skills.
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- ===== Contact Section ===== -->
-
-    <section class="contact-section" id="contact">
-      <h2 class="section-title">&gt; CONTACT_ME</h2>
-
-      <div class="contact-container">
-        <!-- Contact Info -->
-        <div class="contact-info">
-          <p><i class="fas fa-envelope"></i> ahmadubaidedu@gmail.com</p>
-          <p><i class="fab fa-whatsapp"></i> +92 3428994095</p>
-
-          <div class="contact-socials">
-            <a href="https://github.com/ahmadubaid061"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="https://www.linkedin.com/in/ubaid-ahmad061"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a href="https://x.com/ahmadubaid061"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.instagram.com/ahmadubaid061/"
-              ><i class="fab fa-instagram"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- Contact Form -->
-        <form class="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" rows="5" required></textarea>
-          <button type="submit" class="btn-glow">Send Message</button>
-        </form>
-      </div>
-    </section>
-
-    <div class="nav-links hide-in-desktop sidebar">
-      <div class="btn-glow close-menu">close-menu</div>
-
-      <a href="#home" class="link">HOME</a>
-      <a href="#about" class="link">ABOUT</a>
-      <a href="#services" class="link">SERVICES</a>
-      <a href="#projects" class="link">PROJECTS</a>
-      <a href="#experience" class="link">EXPERIENCE</a>
-      <a href="#contact" class="link" id="contact-btn">CONTACT</a>
-      <p
-        style="
-          text-align: center;
-          margin-left: 10px;
-          margin-top: 50vh;
-          border-bottom: 1px solid #00ff88;
-        "
-      >
-        © 2025 <br />Ubaid Ahmad. <br />
-        All Rights Reserved.
-      </p>
+        <div class="menu-btn" id="menuOpen"><i class="fas fa-bars"></i></div>
     </div>
-    <footer class="footer">
-      <p>© 2025 Ubaid Ahmad. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+</nav>
+
+<!-- Mobile Sidebar -->
+<div class="sidebar" id="sidebar">
+    <div class="close-menu" id="menuClose"><i class="fas fa-times"></i> Close</div>
+    <a href="#home">HOME</a>
+    <a href="#about">ABOUT</a>
+    <a href="#services">SERVICES</a>
+    <a href="#projects">PROJECTS</a>
+    <a href="#experience">EXPERIENCE</a>
+    <a href="#contact">CONTACT</a>
+    <p style="margin-top: auto; font-size:0.8rem; color:#666;">© 2025 Ubaid Ahmad</p>
+</div>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container hero-grid">
+        <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
+            <h1>UBAID <span class="gradient-text">AHMAD</span></h1>
+            <div class="hero-tag">FRONT-END ARCHITECT & INTERACTION DESIGNER</div>
+            <p class="hero-desc">Crafting digital experiences where art meets code. I build immersive, responsive web environments with cutting-edge animations and futuristic aesthetics.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn-primary">✨ Let's Connect</a>
+                <a href="#projects" class="btn-outline">View Work →</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/ahmadubaid061" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ubaid-ahmad061/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/ahmadubaid061" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/ahmadubaid061/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="hero-right" data-aos="fade-left" data-aos-duration="1000">
+            <div class="avatar-frame">
+                <img src="unnamed.jpg" alt="Ubaid Ahmad">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-header" data-aos="fade-up"><span>&gt;</span> ABOUT_ME</h2>
+        <div class="about-grid" data-aos="fade-up">
+            <div>
+                <p style="font-size:1.1rem; line-height:1.6;">I'm a web designer & front-end developer with a passion for minimal yet powerful UI. My mission is to craft interfaces that feel alive — with smooth micro-interactions, responsive fluidity, and a futuristic neon signature. <br><br> Currently pursuing BS CS and working on real-world products that merge creativity with business goals.</p>
+            </div>
+            <div>
+                <div class="edu-item">
+                    <h3>🎓 BS Computer Science</h3>
+                    <p>SS Case IT Islamabad | 2024 — 2028</p>
+                    <small>Data Structures, Modern Web Tech, AI fundamentals</small>
+                </div>
+                <div class="edu-item">
+                    <h3>⚡ Web Development (Honors)</h3>
+                    <p>NAVTTC Pakistan | 2025</p>
+                    <small>Responsive design, UX principles, advanced JS</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+    <div class="container">
+        <h2 class="section-header" data-aos="fade-up"><span>✦</span> SERVICES</h2>
+        <div class="services-grid" id="servicesGrid">
+            <div class="service-card" data-aos="zoom-in"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Portfolio Websites</h3><p>Showcase your identity with artistic, modern portfolios that pop.</p><a href="#contact" class="btn-outline" style="display:inline-block; margin-top:1rem;">Inquire</a></div>
+            <div class="service-card" data-aos="zoom-in"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h3>Landing Pages</h3><p>High-conversion, breathtaking landing pages to capture leads.</p><a href="#contact" class="btn-outline" style="display:inline-block; margin-top:1rem;">Inquire</a></div>
+            <div class="service-card" data-aos="zoom-in"><div class="service-icon"><i class="fas fa-store"></i></div><h3>E‑commerce UI</h3><p>Seamless online stores with futuristic user interfaces.</p><a href="#contact" class="btn-outline" style="display:inline-block; margin-top:1rem;">Inquire</a></div>
+            <div class="service-card" data-aos="zoom-in"><div class="service-icon"><i class="fas fa-magic"></i></div><h3>Website Redesign</h3><p>Transform outdated websites into modern interactive art.</p><a href="#contact" class="btn-outline" style="display:inline-block; margin-top:1rem;">Inquire</a></div>
+        </div>
+        <div class="services-dots" id="servicesDots"></div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-header" data-aos="fade-up"><span>⌘</span> PROJECTS</h2>
+        <div class="projects-grid" id="projectsGrid">
+            <div class="project-card"><img src="sgc.png" alt="SGC"><h3>Business Visa Site</h3><p>Corporate website for visa consultancy, fully responsive & sleek.</p><div class="project-links"><a href="https://consultantsbysgc.com/" target="_blank">Live</a><a href="#" onclick="showAlert(event)">GitHub</a></div></div>
+            <div class="project-card"><img src="bankist.jpg" alt="Bankist"><h3>Bankist Landing</h3><p>Interactive modern banking concept with DOM manipulations.</p><div class="project-links"><a href="https://ahmadubaid061.github.io/Bank_website/" target="_blank">Live</a><a href="https://github.com/ahmadubaid061/Bank_website" target="_blank">GitHub</a></div></div>
+            <div class="project-card"><img src="bank.jpg" alt="Bankist App"><h3>Bankist App</h3><p>Full banking simulation: transfers, loans, and sleek UI.</p><div class="project-links"><a href="https://ahmadubaid061.github.io/Bankist-App_Project/" target="_blank">Live</a><a href="https://github.com/ahmadubaid061/Bankist-App_Project" target="_blank">GitHub</a></div></div>
+            <div class="project-card"><img src="dice.jpg" alt="Dice Game"><h3>Rolling Dice</h3><p>2‑player dice game with smooth animations & fun interaction.</p><div class="project-links"><a href="https://ahmadubaid061.github.io/Dice-Game/" target="_blank">Live</a><a href="https://github.com/ahmadubaid061/Dice-Game" target="_blank">GitHub</a></div></div>
+            <div class="project-card"><img src="portfolio.jpeg" alt="Portfolio Template"><h3>Portfolio Template</h3><p>Modern animated portfolio design for creators.</p><div class="project-links"><a href="https://ahmadubaid061.github.io/my_portfolio/" target="_blank">Live</a><a href="https://github.com/ahmadubaid061/my_portfolio" target="_blank">GitHub</a></div></div>
+        </div>
+        <div class="dots-mobile" id="projectsDots"></div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience">
+    <div class="container">
+        <h2 class="section-header" data-aos="fade-up"><span>⧫</span> EXPERIENCE</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right"><h3>JavaScript Intern - Saif Softy Tech</h3><span style="color:#00ff99;">07/2025 — Present</span><p>Daily real-world coding tasks, version control & building scalable features.</p></div>
+            <div class="timeline-item" data-aos="fade-left"><h3>Front-End Developer - LinkedIn Community</h3><span style="color:#00ff99;">2024 — present</span><p>Sharing insights, building network, and showcasing bleeding-edge projects.</p></div>
+            <div class="timeline-item" data-aos="fade-right"><h3>Open Source Contributor - GitHub</h3><span style="color:#00ff99;">2024 — present</span><p>Maintaining high-quality front-end repositories & documentation.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <h2 class="section-header" data-aos="fade-up"><span>✶</span> CONTACT</h2>
+        <div class="contact-container" data-aos="flip-up">
+            <div class="contact-info">
+                <p><i class="fas fa-envelope" style="color:#00ff99;"></i> ahmadubaidedu@gmail.com</p>
+                <p><i class="fab fa-whatsapp" style="color:#00ff99;"></i> +92 3428994095</p>
+                <div class="social-links" style="margin-top:1.5rem;">
+                    <a href="https://github.com/ahmadubaid061"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ubaid-ahmad061/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/ahmadubaid061"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="4" placeholder="Your Message..."></textarea>
+                <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Send Message ✦</button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer>© 2025 Ubaid Ahmad — All Rights Reserved. Built with ⚡ and Neon aesthetics.</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: false, offset: 80, duration: 800, easing: 'ease-out' });
+
+    // Mobile menu toggle
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const sidebar = document.getElementById('sidebar');
+    if(menuOpen && menuClose) {
+        menuOpen.onclick = () => sidebar.classList.add('open');
+        menuClose.onclick = () => sidebar.classList.remove('open');
+        document.querySelectorAll('.sidebar a').forEach(link => link.addEventListener('click', () => sidebar.classList.remove('open')));
+    }
+
+    // Horizontal scroll + dots (Projects)
+    const projectsGrid = document.getElementById('projectsGrid');
+    const projectsDots = document.getElementById('projectsDots');
+    if(window.innerWidth <= 900 && projectsGrid) {
+        function updateProjectDots() {
+            const cards = document.querySelectorAll('.project-card');
+            if(!projectsDots || cards.length === 0) return;
+            projectsDots.innerHTML = '';
+            for(let i=0; i<cards.length; i++) {
+                const dot = document.createElement('div'); dot.classList.add('dot');
+                dot.addEventListener('click', () => {
+                    projectsGrid.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' });
+                });
+                projectsDots.appendChild(dot);
+            }
+            const dotsArr = document.querySelectorAll('#projectsDots .dot');
+            projectsGrid.addEventListener('scroll', () => {
+                let index = Math.round(projectsGrid.scrollLeft / (projectsGrid.clientWidth * 0.85));
+                dotsArr.forEach((d,i) => d.classList.toggle('active', i === index));
+            });
+            if(dotsArr[0]) dotsArr[0].classList.add('active');
+        }
+        updateProjectDots();
+        window.addEventListener('resize', () => { if(window.innerWidth <= 900) updateProjectDots(); });
+    }
+    
+    // Services horizontal dots
+    const servicesGrid = document.getElementById('servicesGrid');
+    const servicesDots = document.getElementById('servicesDots');
+    if(window.innerWidth <= 900 && servicesGrid) {
+        function updateServicesDots() {
+            const cards = document.querySelectorAll('.service-card');
+            if(!servicesDots || cards.length === 0) return;
+            servicesDots.innerHTML = '';
+            for(let i=0; i<cards.length; i++) {
+                const dot = document.createElement('div'); dot.classList.add('dot');
+                dot.addEventListener('click', () => servicesGrid.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' }));
+                servicesDots.appendChild(dot);
+            }
+            const sdots = document.querySelectorAll('#servicesDots .dot');
+            servicesGrid.addEventListener('scroll', () => {
+                let idx = Math.round(servicesGrid.scrollLeft / (servicesGrid.clientWidth * 0.85));
+                sdots.forEach((d,i) => d.classList.toggle('active', i === idx));
+            });
+            if(sdots[0]) sdots[0].classList.add('active');
+        }
+        updateServicesDots();
+        window.addEventListener('resize', () => { if(window.innerWidth <= 900) updateServicesDots(); });
+    }
+
+    // Sticky nav logic
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 80) nav.style.background = 'rgba(8, 8, 14, 0.95)';
+        else nav.style.background = 'rgba(10, 10, 15, 0.75)';
+    });
+
+    function showAlert(e) {
+        e.preventDefault();
+        alert("Privacy concerns — Code not publicly available.");
+    }
+    window.showAlert = showAlert;
+    
+    // Contact form alert
+    const form = document.getElementById('contactForm');
+    if(form) form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('✨ Thank you! I’ll reach out soon.');
+        form.reset();
+    });
+    
+    // smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+</script>
+</body>
 </html>
