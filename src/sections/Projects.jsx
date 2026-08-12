@@ -47,14 +47,7 @@ const projects = [
     live: "https://ahmadubaid061.github.io/Dice-Game/",
     github: "https://github.com/ahmadubaid061/Dice-Game",
   },
-  {
-    img: "/images/portfolio.jpeg",
-    alt: "Portfolio Template",
-    title: "Portfolio Template",
-    desc: "Modern animated portfolio design for creators.",
-    live: "https://ahmadubaid061.github.io/my_portfolio/",
-    github: "https://github.com/ahmadubaid061/my_portfolio",
-  },
+  
 ];
 
 export default function Projects() {
