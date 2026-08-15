@@ -50,14 +50,6 @@ const projects = [
     live: "https://ahmadubaid061.github.io/Bankist-App_Project/",
     github: "https://github.com/ahmadubaid061/Bankist-App_Project",
   },
-  {
-    img: "/images/dice.jpg",
-    alt: "Dice Game",
-    title: "Rolling Dice",
-    desc: "2‑player dice game with smooth animations & fun interaction.",
-    live: "https://ahmadubaid061.github.io/Dice-Game/",
-    github: "https://github.com/ahmadubaid061/Dice-Game",
-  },
 ];
 
 export default function Projects() {
