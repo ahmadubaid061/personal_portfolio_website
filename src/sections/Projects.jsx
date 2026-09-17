@@ -8,6 +8,15 @@ const projects = [
     github:
       "https://github.com/ahmadubaid061/Flask_Python/tree/main/11-Habit-and-Mood-Analytics-Dashboard",
   },
+  {
+    img: "/images/committee.png",
+    alt: "Committee Management App",
+    title: "Kameti/ROSCA Committee Management",
+    desc: "Savings-committee tracker with device-trust login (hashed, time-limited email codes), route-level authorization, and cent-based currency storage to avoid rounding errors.",
+    live: "https://committee-management-eq7l.onrender.com",
+    github:
+      "https://github.com/ahmadubaid061/Flask_Python/tree/main/12-Commette_Management_App",
+  },
 
   {
     img: "/images/ecommerce.jpeg",
@@ -18,37 +27,12 @@ const projects = [
     github: "https://github.com/ahmadubaid061/Monark",
   },
   {
-    img: "/images/to-do.png",
-    alt: "Flask To-Do App",
-    title: "Flask To-Do App",
-    desc: "Backend-focused task manager with per-user accounts, secure sessions & PostgreSQL data modeling.",
-    live: "https://flask-todo-app-vert.vercel.app/",
-    github:
-      "https://github.com/ahmadubaid061/Flask_Python/tree/main/10-to-do-App-with-SQLAlchemy",
-  },
-  {
     img: "/images/sgc.png",
     alt: "SGC",
     title: "Business Visa Site",
     desc: "Corporate website for visa consultancy, fully responsive & sleek.",
     live: "https://consultantsbysgc.com/",
     github: null,
-  },
-  {
-    img: "/images/bankist.jpg",
-    alt: "Bankist",
-    title: "Bankist Landing",
-    desc: "Interactive modern banking concept with DOM manipulations.",
-    live: "https://ahmadubaid061.github.io/Bank_website/",
-    github: "https://github.com/ahmadubaid061/Bank_website",
-  },
-  {
-    img: "/images/bank.jpg",
-    alt: "Bankist App",
-    title: "Bankist App",
-    desc: "Full banking simulation: transfers, loans, and sleek UI.",
-    live: "https://ahmadubaid061.github.io/Bankist-App_Project/",
-    github: "https://github.com/ahmadubaid061/Bankist-App_Project",
   },
 ];
 
