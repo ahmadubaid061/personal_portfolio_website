@@ -58,7 +58,9 @@ export default function App() {
         target.scrollIntoView({ behavior: "smooth" });
       }
     }
-    anchorLinks.forEach((anchor) => anchor.addEventListener("click", handleAnchorClick));
+    anchorLinks.forEach((anchor) =>
+      anchor.addEventListener("click", handleAnchorClick),
+    );
 
     // ===== STICKY NAVBAR =====
     const nav = document.querySelector("nav");
@@ -89,7 +91,10 @@ export default function App() {
         const dot = document.createElement("div");
         dot.classList.add("dot");
         const onClick = () => {
-          projectsGrid.scrollTo({ left: cards[i].offsetLeft - 20, behavior: "smooth" });
+          projectsGrid.scrollTo({
+            left: cards[i].offsetLeft - 20,
+            behavior: "smooth",
+          });
         };
         dot.addEventListener("click", onClick);
         dotClickHandlers.push({ dot, onClick });
@@ -105,7 +110,9 @@ export default function App() {
           const cardLeft = cards[i].offsetLeft - 20;
           if (scrollPos >= cardLeft - 50) activeIndex = i;
         }
-        dotsArr.forEach((dot, i) => dot.classList.toggle("active", i === activeIndex));
+        dotsArr.forEach((dot, i) =>
+          dot.classList.toggle("active", i === activeIndex),
+        );
       };
 
       projectsGrid.addEventListener("scroll", updateActiveDot);
@@ -114,7 +121,9 @@ export default function App() {
 
       cleanupProjectsScroll = () => {
         projectsGrid.removeEventListener("scroll", updateActiveDot);
-        dotClickHandlers.forEach(({ dot, onClick }) => dot.removeEventListener("click", onClick));
+        dotClickHandlers.forEach(({ dot, onClick }) =>
+          dot.removeEventListener("click", onClick),
+        );
       };
     }
 
@@ -135,7 +144,10 @@ export default function App() {
         const dot = document.createElement("div");
         dot.classList.add("dot");
         const onClick = () => {
-          servicesGrid.scrollTo({ left: cards[i].offsetLeft - 20, behavior: "smooth" });
+          servicesGrid.scrollTo({
+            left: cards[i].offsetLeft - 20,
+            behavior: "smooth",
+          });
         };
         dot.addEventListener("click", onClick);
         dotClickHandlers.push({ dot, onClick });
@@ -151,7 +163,9 @@ export default function App() {
           const cardLeft = cards[i].offsetLeft - 20;
           if (scrollPos >= cardLeft - 50) activeIndex = i;
         }
-        dotsArr.forEach((dot, i) => dot.classList.toggle("active", i === activeIndex));
+        dotsArr.forEach((dot, i) =>
+          dot.classList.toggle("active", i === activeIndex),
+        );
       };
 
       servicesGrid.addEventListener("scroll", updateActiveDot);
@@ -160,7 +174,9 @@ export default function App() {
 
       cleanupServicesScroll = () => {
         servicesGrid.removeEventListener("scroll", updateActiveDot);
-        dotClickHandlers.forEach(({ dot, onClick }) => dot.removeEventListener("click", onClick));
+        dotClickHandlers.forEach(({ dot, onClick }) =>
+          dot.removeEventListener("click", onClick),
+        );
       };
     }
 
@@ -181,22 +197,20 @@ export default function App() {
     }
     window.showAlert = showAlert;
 
-    // ===== CONTACT FORM HANDLER =====
-    const contactForm = document.getElementById("contactForm");
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      alert("✨ Thank you! I'll reach out soon.");
-      contactForm.reset();
-    }
-    if (contactForm) contactForm.addEventListener("submit", handleContactSubmit);
-
     // ===== FADE-IN EFFECT FOR NAV LINKS =====
     const navLinks = document.querySelector(".nav-links");
     function handleMouseOver(e) {
-      if (e.target.classList.contains("nav-links") || e.target.tagName === "NAV") return;
+      if (
+        e.target.classList.contains("nav-links") ||
+        e.target.tagName === "NAV"
+      )
+        return;
       const siblings = navLinks.querySelectorAll("a");
       siblings.forEach((sibling) => {
-        if (sibling !== e.target && !sibling.classList.contains("contact-nav")) {
+        if (
+          sibling !== e.target &&
+          !sibling.classList.contains("contact-nav")
+        ) {
           sibling.style.opacity = "0.5";
         }
       });
@@ -216,13 +230,16 @@ export default function App() {
       if (menuOpen) menuOpen.removeEventListener("click", openMenu);
       if (menuClose) menuClose.removeEventListener("click", closeMenu);
       if (overlay) overlay.removeEventListener("click", closeMenu);
-      sidebarLinks.forEach((link) => link.removeEventListener("click", closeMenu));
-      anchorLinks.forEach((anchor) => anchor.removeEventListener("click", handleAnchorClick));
+      sidebarLinks.forEach((link) =>
+        link.removeEventListener("click", closeMenu),
+      );
+      anchorLinks.forEach((anchor) =>
+        anchor.removeEventListener("click", handleAnchorClick),
+      );
       window.removeEventListener("scroll", handleNavScroll);
       window.removeEventListener("resize", initMobileFeatures);
       cleanupProjectsScroll();
       cleanupServicesScroll();
-      if (contactForm) contactForm.removeEventListener("submit", handleContactSubmit);
       if (navLinks) {
         navLinks.removeEventListener("mouseover", handleMouseOver);
         navLinks.removeEventListener("mouseout", handleMouseOut);
