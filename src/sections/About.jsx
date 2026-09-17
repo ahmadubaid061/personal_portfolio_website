@@ -5,12 +5,13 @@ export default function About() {
         <h2 className="section-header" data-aos="fade-up"><span>&gt;</span> ABOUT_ME</h2>
         <div className="about-grid" data-aos="fade-up">
           <div>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.6 }}>I'm a Full Stack Developer & UI architect with a
-              passion for building complete digital solutions. From responsive frontends to scalable backend
-              systems, I craft interfaces that feel alive and perform flawlessly. <br /><br />
-              Currently pursuing BS CS while working on real-world products that merge creativity with
-              enterprise-grade functionality. Specialized in MERN stack, modern JavaScript, and cloud-ready
-              architectures.</p>
+            <p style={{ fontSize: "1.1rem", lineHeight: 1.6 }}>I'm a Full Stack Developer focused on backend
+              systems and application security. I build web applications with an emphasis on solid data modeling,
+              authentication design, and secure-by-default practices — using Flask and Python as my primary
+              backend stack. <br /><br />
+              Currently pursuing a BS in Computer Science while building an application security foundation
+              (secure coding, DevSecOps tooling, cloud security) and working toward a Deep Learning + ML Security
+              final year project.</p>
           </div>
           <div>
             <div className="edu-item">
