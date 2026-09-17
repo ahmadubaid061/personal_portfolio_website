@@ -1,16 +1,64 @@
-# React + Vite
+# Ubaid Ahmad — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Source for my personal portfolio site, built with React and Vite.
 
-Currently, two official plugins are available:
+**Live site:** [ahmadubaid.vercel.app](https://ahmadubaid.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About
 
-## React Compiler
+A single-page portfolio covering my background, experience, and projects as a
+full-stack developer focused on backend systems and application security.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Sections
 
-## Expanding the Oxlint configuration
+- **Hero** — intro and quick links
+- **About** — background and education
+- **Experience** — internships and work history
+- **Projects** — featured project cards with live demo + GitHub links
+- **Services** — freelance services offered
+- **Contact** — contact form and direct links
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Tech Stack
+
+- **Framework:** React 19 + Vite
+- **Animations:** AOS (Animate On Scroll)
+- **Icons:** Font Awesome
+- **Routing:** React Router
+- **Deployment:** Vercel
+
+## Project Structure
+
+```
+src/
+├── components/       # Navbar, Sidebar, Footer
+├── sections/         # Hero, About, Experience, Projects, Services, Contact
+├── hooks/            # useScrollSpy
+├── sectionConfig.js  # section/nav metadata
+├── style.css
+├── App.jsx
+└── main.jsx
+public/
+├── images/           # project screenshots, profile photo
+├── favicon.svg
+└── icons.svg
+```
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Visit `http://localhost:5173`.
+
+## Build
+
+```bash
+npm run build
+```
+
+## Notes
+
+This is an actively maintained portfolio — project list and copy are updated
+as new work is completed.
